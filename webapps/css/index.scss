@@ -1,0 +1,169 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(120deg, #e2c35d, #d88771);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.titleContainer {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: black;
+}
+
+.titleImageContainer {
+  margin-top: 20px;
+  align-self: center;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+header,
+.rootContainer {
+  padding: 10px;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputContainer,
+.taskUpdateContainer {
+  padding: 4px;
+  font-size: 1rem;
+  border: none;
+  background: white;
+  font-family: "Poppins", sans-serif;
+  border-radius: 10px;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+#taskTextField,
+#updateTaskField {
+  font-size: 16px;
+  background: white;
+  font-family: "Poppins", sans-serif;
+  flex: 1;
+}
+
+#addButton {
+  font-size: 20px;
+  background-image: linear-gradient(120deg, #00fff2, #0062ff);
+  height: 35px;
+  width: 35px;
+}
+
+#taskTextField,
+#addButton,
+#updateTaskField {
+  margin: 5px;
+  padding: 4px;
+  border: none;
+  border-radius: 10px;
+}
+
+#taskContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#updateTaskField {
+  width: 210px;
+}
+
+.split {
+  flex: 50%;
+  padding: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  max-height: 80%;
+}
+
+li {
+  list-style: none;
+}
+
+#pendingListTitle,
+#completedListTitle {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #6280e0;
+}
+
+.taskCheckboxClass {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 16px;
+  width: 16px;
+}
+
+.addIcon {
+  font-size: 25px;
+  color: white;
+}
+
+.completed {
+  font-style: italic;
+  color: gray;
+  text-decoration: line-through;
+}
+
+.taskNameClass {
+  font-size: 22px;
+}
+
+.taskNameClass.editable {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+}
+
+.dateStringClass {
+  font-size: 12px;
+  color: #e0dede;
+  opacity: 0.8;
+}
+
+.taskIconClass {
+  font-size: 12px;
+  color: white;
+}
+
+.taskButtonClass {
+  border: none;
+  font-family: "Poppins", sans-serif;
+  border-radius: 8px;
+  margin: 5px;
+  height: 25px;
+  width: 25px;
+}
+
+button.taskButtonClass.edit,
+button.taskButtonClass.save {
+  background-image: linear-gradient(120deg, #70ff99, #0c660f);
+}
+
+button.taskButtonClass.remove,
+button.taskButtonClass.cancel {
+  background-image: linear-gradient(120deg, #ffa578, #ff0400);
+}
