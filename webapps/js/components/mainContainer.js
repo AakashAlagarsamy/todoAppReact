@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TaskListContainer from "./taskListContainer";
 import InputContainer from "./inputContainer";
 import todoImage from "./../../assets/images/todo.png";
+import store from "../redux/reduxStore";
 
 function MainContainer() {
   const [flag, setFlag] = useState(true);
@@ -9,6 +10,15 @@ function MainContainer() {
   const handleReRender = () => {
     setFlag((prevFlag) => !prevFlag);
   };
+
+  useEffect(() => {
+    const unsubscribe = store.subscribe(() => {
+      handleReRender();
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <div className="rootContainer">
@@ -21,7 +31,7 @@ function MainContainer() {
             <h1>Todo Application</h1>
           </div>
         </div>
-        <InputContainer handleReRender={handleReRender} />
+        <InputContainer />
       </div>
       <div id="taskContainer">
         <TaskListContainer
@@ -29,14 +39,12 @@ function MainContainer() {
           titleId={"pendingListTitle"}
           taskListType={"pendingTasks"}
           classname={"pendingContainer"}
-          handleReRender={handleReRender}
         />
         <TaskListContainer
           title={"Completed List"}
           titleId={"completedListTitle"}
           taskListType={"completedTasks"}
           classname={"completedContainer"}
-          handleReRender={handleReRender}
         />
       </div>
     </div>

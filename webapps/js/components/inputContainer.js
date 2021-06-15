@@ -1,11 +1,10 @@
 import React, { useRef, useEffect } from "react";
 import store from "./../redux/reduxStore";
 import { getFormattedDateTime } from "./../utils/utils";
-import PropTypes from "prop-types";
+import * as actions from "../redux/actions";
 
-function InputContainer(props) {
+function InputContainer() {
   const taskInputRef = useRef();
-  const { handleReRender } = props;
 
   useEffect(() => {
     taskInputRef.current.focus();
@@ -14,16 +13,10 @@ function InputContainer(props) {
   const handleAddTask = () => {
     const taskName = taskInputRef.current.value.trim();
     if (taskName !== "") {
-      store.dispatch({
-        type: "addTask",
-        payload: {
-          name: taskName,
-          timeString: getFormattedDateTime(new Date()) + " (Added) "
-        }
-      });
+      const timeString = getFormattedDateTime(new Date()) + " (Added) ";
+      store.dispatch(actions.addTask(taskName, timeString));
     }
     taskInputRef.current.value = "";
-    handleReRender();
   };
 
   const handleKeyPress = (event) => {
@@ -55,7 +48,3 @@ function InputContainer(props) {
 }
 
 export default InputContainer;
-
-InputContainer.propTypes = {
-  handleReRender: PropTypes.func
-};

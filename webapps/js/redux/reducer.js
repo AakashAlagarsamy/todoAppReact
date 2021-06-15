@@ -1,8 +1,9 @@
 import { generateTaskId } from "../utils/utils";
+import { actionTypes } from "./actionTypes";
 
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case "addTask":
+    case actionTypes.ADD_TASK:
       return [
         ...state,
         {
@@ -12,23 +13,25 @@ export default function reducer(state = [], action) {
           timeString: action.payload.timeString
         }
       ];
-    case "removeTask":
+    case actionTypes.REMOVE_TASK:
       return state.filter((task) => task.id !== action.payload.id);
-    case "changeTask": {
-      const index = state.findIndex((task) => task.id === action.payload.id);
-      state[index].completed = !state[index].completed;
-      return state;
-    }
-    case "updateTask": {
-      const taskIndex = state.findIndex(
-        (task) => task.id === action.payload.id
+    case actionTypes.CHANGE_TASK: {
+      return state.map((task) =>
+        task.id !== action.payload.id
+          ? task
+          : { ...task, completed: !task.completed }
       );
-      state[taskIndex] = {
-        ...state[taskIndex],
-        name: action.payload.name,
-        timeString: action.payload.timeString
-      };
-      return state;
+    }
+    case actionTypes.UPDATE_TASK: {
+      return state.map((task) =>
+        task.id !== action.payload.id
+          ? task
+          : {
+              ...task,
+              name: action.payload.name,
+              timeString: action.payload.timeString
+            }
+      );
     }
     default:
       return state;

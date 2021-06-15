@@ -5,7 +5,6 @@ import store from "./../redux/reduxStore";
 
 function TaskListContainer(props) {
   const tasks = store.getState();
-  const { handleReRender } = props;
 
   const getPendingTasks = () => {
     const pendingTasks = tasks.filter((task) => task.completed === false);
@@ -25,11 +24,7 @@ function TaskListContainer(props) {
       <label id={titleId}>{title}</label>
       <ul>
         {taskList.map((task) => (
-          <TaskContainer
-            key={task.id}
-            task={task}
-            handleReRender={handleReRender}
-          />
+          <TaskContainer key={task.id} task={task} />
         ))}
       </ul>
     </div>
@@ -43,5 +38,4 @@ TaskListContainer.propTypes = {
   titleId: PropTypes.string,
   taskListType: PropTypes.string,
   classname: PropTypes.string,
-  handleReRender: PropTypes.func
 };
